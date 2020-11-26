@@ -6,7 +6,7 @@ int white='W'; //white 변수에 W 대입
 int black='B'; // black변수에 B대입 
 int white_cnt=2;  // 게임판에 놓인  흰색 바둑돌 개수  
 int black_cnt=2;  // 게임판에 놓인 검은색 바둑돌 개수  
-
+int gameboard[6][6];
 int printBoard(int gameboard[6][6]){ //게임판 만드는 함수  
 		
 	int i, j;          //변수 i,j 선언  
@@ -29,8 +29,24 @@ int printBoard(int gameboard[6][6]){ //게임판 만드는 함수
 
 }
 
-int checkFlip(int startX, int startY, int wayX, int wayY, int color) ;
-
+int checkFlip(int startX, int startY, int wayX, int wayY, int color) { //특정 칸에서 특정 방향으로 몇개 뒤집을 수 있는지 개수 세어주는 함수  
+    
+    int x,y;  
+    int stone_cnt=0; //뒤집을 수 있는 돌 수를 나타낸 변수 선언 
+	int gameboard[startY][startX];
+    
+    do{ 
+        if(gameboard[y][x]==white){
+	        for (x=5; x>=0; x--) { //입력 받은 칸에서부터 왼쪽에 있는 흰색 돌 세기  
+            stone_cnt++;	
+	        }
+	    }
+ 	} while (gameboard[y][x]==black); //검은 돌일 때 이동 멈추기  
+ 	   printf("%d", stone_cnt);   //이동한 칸 수 출력  
+}
+           	
+   
+    
 int main(int argc, char *argv[]) {
 	
 	int x,y;   //변수 x,y 선언 
